@@ -62,6 +62,12 @@ To simplify the process in the future, install [direnv](https://direnv.net/) whi
 
 More information can be found on Github [cutlass](https://github.com/cloudfoundry/libbuildpack/cutlass).
 
+### SafeNet Luna Network HSMs
+
+To connect an application to Luna HSMs, create a Luna user provided service as documented at [Luna User Provided Service](https://github.com/cloudfoundry/java-buildpack/blob/master/docs/framework-luna_security_provider.md).
+
+The Luna client cryptoki.dll along with a .NET PKCS11 wrapper such as [Pkcs11Interop](https://www.pkcs11interop.net/) need to be packaged with the application.
+
 ### Help and Support
 
 Join the #greenhouse channel in our [Slack community](http://slack.cloudfoundry.org/) if you need any further assistance.

@@ -2,6 +2,7 @@ package compile
 
 import (
 	"errors"
+	"hwc/compile/luna"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -35,6 +36,12 @@ func (c *Compiler) Compile() error {
 	err = c.InstallHWC()
 	if err != nil {
 		c.Log.Error("Unable to install HWC: %s", err.Error())
+		return err
+	}
+
+	err = c.InstallLuna()
+	if err != nil {
+		c.Log.Error("Unable to install Luna: %s", err.Error())
 		return err
 	}
 
@@ -84,4 +91,10 @@ func (c *Compiler) InstallHWC() error {
 	hwcDir := filepath.Join(c.BuildDir, ".cloudfoundry")
 
 	return c.Installer.InstallDependency(defaultHWC, hwcDir)
+}
+
+func (c *Compiler) InstallLuna() error {
+	c.Log.BeginStep("Installing Luna")
+	luna := luna.NewLuna(c.Log, c.BuildDir)
+	return luna.InstallLuna()
 }
